@@ -19,7 +19,6 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.shared.ui.label.ContentMode;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -32,18 +31,15 @@ import com.vaadin.ui.VerticalLayout;
 public class Labels extends VerticalLayout implements View {
     public Labels() {
         setMargin(true);
+        addStyleName("content-labels");
 
         Label h1 = new Label("Labels");
         h1.addStyleName("h1");
         addComponent(h1);
 
-        HorizontalLayout split = new HorizontalLayout();
-        split.setWidth("100%");
-        addComponent(split);
-
         VerticalLayout left = new VerticalLayout();
         left.setMargin(new MarginInfo(false, true, false, false));
-        split.addComponent(left);
+        addComponent(left);
 
         Label huge = new Label("Huge type for display text.");
         huge.addStyleName("huge");
@@ -85,7 +81,7 @@ public class Labels extends VerticalLayout implements View {
         left.addComponent(normal);
 
         Panel p = new Panel("Additional Label Styles");
-        split.addComponent(p);
+        addComponent(p);
 
         VerticalLayout right = new VerticalLayout();
         right.setSpacing(true);
@@ -118,7 +114,7 @@ public class Labels extends VerticalLayout implements View {
     }
 
     @Override
-    public void enter(ViewChangeEvent event) {
+    public void enter(final ViewChangeEvent event) {
         // TODO Auto-generated method stub
 
     }

@@ -55,18 +55,19 @@ import com.vaadin.ui.Window.CloseListener;
 public class CommonParts extends VerticalLayout implements View {
     public CommonParts() {
         setMargin(true);
+        addStyleName("content-common");
 
         Label h1 = new Label("Common UI Elements");
         h1.addStyleName("h1");
         addComponent(h1);
 
-        GridLayout row = new GridLayout(2, 3);
+        VerticalLayout row = new VerticalLayout();
         row.setWidth("100%");
         row.setSpacing(true);
         addComponent(row);
 
         row.addComponent(loadingIndicators());
-        row.addComponent(notifications(), 1, 0, 1, 2);
+        row.addComponent(notifications());
         row.addComponent(windows());
         row.addComponent(tooltips());
 
@@ -74,7 +75,7 @@ public class CommonParts extends VerticalLayout implements View {
 
     Panel loadingIndicators() {
         Panel p = new Panel("Loading Indicator");
-        VerticalLayout content = new VerticalLayout();
+        final VerticalLayout content = new VerticalLayout();
         p.setContent(content);
         content.setSpacing(true);
         content.setMargin(true);
@@ -88,7 +89,7 @@ public class CommonParts extends VerticalLayout implements View {
         Button loading = new Button("0.8");
         loading.addClickListener(new ClickListener() {
             @Override
-            public void buttonClick(ClickEvent event) {
+            public void buttonClick(final ClickEvent event) {
                 try {
                     Thread.sleep(800);
                 } catch (InterruptedException e) {
@@ -100,7 +101,7 @@ public class CommonParts extends VerticalLayout implements View {
         Button delay = new Button("3");
         delay.addClickListener(new ClickListener() {
             @Override
-            public void buttonClick(ClickEvent event) {
+            public void buttonClick(final ClickEvent event) {
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
@@ -112,7 +113,7 @@ public class CommonParts extends VerticalLayout implements View {
         Button wait = new Button("15");
         wait.addClickListener(new ClickListener() {
             @Override
-            public void buttonClick(ClickEvent event) {
+            public void buttonClick(final ClickEvent event) {
                 try {
                     Thread.sleep(15000);
                 } catch (InterruptedException e) {
@@ -126,15 +127,24 @@ public class CommonParts extends VerticalLayout implements View {
         group.addComponent(label);
 
         Label spinnerDesc = new Label(
-                "The theme also provides a mixin that you can use to include a spinner anywhere in your application. Below is a Label with a custom style name, for which the spinner mixin is added.");
+                "The theme also provides a mixin that you can use to include a spinner anywhere in your application. The button below reveals a Label with a custom style name, for which the spinner mixin is added.");
         spinnerDesc.addStyleName("small");
         spinnerDesc.setCaption("Spinner");
         content.addComponent(spinnerDesc);
 
         if (!ValoThemeUI.isTestMode()) {
-            Label spinner = new Label();
+            final Label spinner = new Label();
             spinner.addStyleName("spinner");
-            content.addComponent(spinner);
+
+            Button showSpinnerButton = new Button("Show spinner",
+                    new ClickListener() {
+                        @Override
+                        public void buttonClick(final ClickEvent event) {
+                            content.replaceComponent(event.getComponent(),
+                                    spinner);
+                        }
+                    });
+            content.addComponent(showSpinnerButton);
         }
 
         return p;
@@ -158,7 +168,7 @@ public class CommonParts extends VerticalLayout implements View {
                 title.setInputPrompt("Title for the notification");
                 title.addValueChangeListener(new ValueChangeListener() {
                     @Override
-                    public void valueChange(ValueChangeEvent event) {
+                    public void valueChange(final ValueChangeEvent event) {
                         if (title.getValue() == null
                                 || title.getValue().length() == 0) {
                             notification.setCaption(null);
@@ -175,7 +185,7 @@ public class CommonParts extends VerticalLayout implements View {
                 description.addStyleName("small");
                 description.addValueChangeListener(new ValueChangeListener() {
                     @Override
-                    public void valueChange(ValueChangeEvent event) {
+                    public void valueChange(final ValueChangeEvent event) {
                         if (description.getValue() == null
                                 || description.getValue().length() == 0) {
                             notification.setDescription(null);
@@ -191,7 +201,7 @@ public class CommonParts extends VerticalLayout implements View {
 
                 Command typeCommand = new Command() {
                     @Override
-                    public void menuSelected(MenuItem selectedItem) {
+                    public void menuSelected(final MenuItem selectedItem) {
                         if (selectedItem.getText().equals("Humanized")) {
                             typeString = "";
                             notification.setStyleName(styleString.trim());
@@ -221,7 +231,7 @@ public class CommonParts extends VerticalLayout implements View {
 
                 Command styleCommand = new Command() {
                     @Override
-                    public void menuSelected(MenuItem selectedItem) {
+                    public void menuSelected(final MenuItem selectedItem) {
                         styleString = "";
                         for (MenuItem item : style.getItems()) {
                             if (item.isChecked()) {
@@ -262,7 +272,7 @@ public class CommonParts extends VerticalLayout implements View {
                 delay.setWidth("7em");
                 delay.addValueChangeListener(new ValueChangeListener() {
                     @Override
-                    public void valueChange(ValueChangeEvent event) {
+                    public void valueChange(final ValueChangeEvent event) {
                         try {
                             notification.setDelayMsec(Integer.parseInt(delay
                                     .getValue()));
@@ -278,7 +288,7 @@ public class CommonParts extends VerticalLayout implements View {
 
                 Button clear = new Button(null, new ClickListener() {
                     @Override
-                    public void buttonClick(ClickEvent event) {
+                    public void buttonClick(final ClickEvent event) {
                         delay.setValue("");
                     }
                 });
@@ -296,7 +306,7 @@ public class CommonParts extends VerticalLayout implements View {
 
                 Button pos = new Button("", new ClickListener() {
                     @Override
-                    public void buttonClick(ClickEvent event) {
+                    public void buttonClick(final ClickEvent event) {
                         notification.setPosition(Position.TOP_LEFT);
                         notification.show(Page.getCurrent());
                     }
@@ -306,7 +316,7 @@ public class CommonParts extends VerticalLayout implements View {
 
                 pos = new Button("", new ClickListener() {
                     @Override
-                    public void buttonClick(ClickEvent event) {
+                    public void buttonClick(final ClickEvent event) {
                         notification.setPosition(Position.TOP_CENTER);
                         notification.show(Page.getCurrent());
                     }
@@ -316,7 +326,7 @@ public class CommonParts extends VerticalLayout implements View {
 
                 pos = new Button("", new ClickListener() {
                     @Override
-                    public void buttonClick(ClickEvent event) {
+                    public void buttonClick(final ClickEvent event) {
                         notification.setPosition(Position.TOP_RIGHT);
                         notification.show(Page.getCurrent());
                     }
@@ -326,7 +336,7 @@ public class CommonParts extends VerticalLayout implements View {
 
                 pos = new Button("", new ClickListener() {
                     @Override
-                    public void buttonClick(ClickEvent event) {
+                    public void buttonClick(final ClickEvent event) {
                         notification.setPosition(Position.MIDDLE_LEFT);
                         notification.show(Page.getCurrent());
                     }
@@ -336,7 +346,7 @@ public class CommonParts extends VerticalLayout implements View {
 
                 pos = new Button("", new ClickListener() {
                     @Override
-                    public void buttonClick(ClickEvent event) {
+                    public void buttonClick(final ClickEvent event) {
                         notification.setPosition(Position.MIDDLE_CENTER);
                         notification.show(Page.getCurrent());
                     }
@@ -346,7 +356,7 @@ public class CommonParts extends VerticalLayout implements View {
 
                 pos = new Button("", new ClickListener() {
                     @Override
-                    public void buttonClick(ClickEvent event) {
+                    public void buttonClick(final ClickEvent event) {
                         notification.setPosition(Position.MIDDLE_RIGHT);
                         notification.show(Page.getCurrent());
                     }
@@ -356,7 +366,7 @@ public class CommonParts extends VerticalLayout implements View {
 
                 pos = new Button("", new ClickListener() {
                     @Override
-                    public void buttonClick(ClickEvent event) {
+                    public void buttonClick(final ClickEvent event) {
                         notification.setPosition(Position.BOTTOM_LEFT);
                         notification.show(Page.getCurrent());
                     }
@@ -366,7 +376,7 @@ public class CommonParts extends VerticalLayout implements View {
 
                 pos = new Button("", new ClickListener() {
                     @Override
-                    public void buttonClick(ClickEvent event) {
+                    public void buttonClick(final ClickEvent event) {
                         notification.setPosition(Position.BOTTOM_CENTER);
                         notification.show(Page.getCurrent());
                     }
@@ -376,7 +386,7 @@ public class CommonParts extends VerticalLayout implements View {
 
                 pos = new Button("", new ClickListener() {
                     @Override
-                    public void buttonClick(ClickEvent event) {
+                    public void buttonClick(final ClickEvent event) {
                         notification.setPosition(Position.BOTTOM_RIGHT);
                         notification.show(Page.getCurrent());
                     }
@@ -502,7 +512,7 @@ public class CommonParts extends VerticalLayout implements View {
                     tabs.addSelectedTabChangeListener(new SelectedTabChangeListener() {
                         @Override
                         public void selectedTabChange(
-                                SelectedTabChangeEvent event) {
+                                final SelectedTabChangeEvent event) {
                             try {
                                 Thread.sleep(600);
                             } catch (InterruptedException e) {
@@ -582,7 +592,7 @@ public class CommonParts extends VerticalLayout implements View {
 
                 Command optionsCommand = new Command() {
                     @Override
-                    public void menuSelected(MenuItem selectedItem) {
+                    public void menuSelected(final MenuItem selectedItem) {
                         if (selectedItem.getText().equals("Footer")) {
                             footerVisible = selectedItem.isChecked();
                         }
@@ -600,20 +610,19 @@ public class CommonParts extends VerticalLayout implements View {
                             tabsVisible = selectedItem.isChecked();
                         }
 
-                        if (selectedItem.getText().equals("Top Toolbar")) {
+                        if (selectedItem.getText().equals("Top")) {
                             toolbarVisible = selectedItem.isChecked();
                         }
 
-                        if (selectedItem.getText().equals("Footer Toolbar")) {
+                        if (selectedItem.getText().equals("Footer")) {
                             footerToolbar = selectedItem.isChecked();
                         }
 
-                        if (selectedItem.getText().equals("Top Toolbar layout")) {
+                        if (selectedItem.getText().equals("Top layout")) {
                             toolbarLayout = selectedItem.isChecked();
                         }
 
-                        if (selectedItem.getText()
-                                .equals("Borderless Toolbars")) {
+                        if (selectedItem.getText().equals("Borderless")) {
                             toolbarStyle = selectedItem.isChecked() ? "borderless"
                                     : null;
                         }
@@ -635,20 +644,18 @@ public class CommonParts extends VerticalLayout implements View {
 
                 options = new MenuBar();
                 options.setCaption("Toolbars");
-                options.addItem("Footer Toolbar", optionsCommand).setCheckable(
-                        true);
-                options.addItem("Top Toolbar", optionsCommand).setCheckable(
-                        true);
-                options.addItem("Top Toolbar layout", optionsCommand)
+                options.addItem("Footer", optionsCommand).setCheckable(true);
+                options.addItem("Top", optionsCommand).setCheckable(true);
+                options.addItem("Top layout", optionsCommand)
                         .setCheckable(true);
-                options.addItem("Borderless Toolbars", optionsCommand)
+                options.addItem("Borderless", optionsCommand)
                         .setCheckable(true);
                 options.addStyleName("small");
                 addComponent(options);
 
                 Command optionsCommand2 = new Command() {
                     @Override
-                    public void menuSelected(MenuItem selectedItem) {
+                    public void menuSelected(final MenuItem selectedItem) {
                         if (selectedItem.getText().equals("Caption")) {
                             win.setCaption(selectedItem.isChecked() ? "Window Caption"
                                     : null);
@@ -677,7 +684,7 @@ public class CommonParts extends VerticalLayout implements View {
                 final Button show = new Button("Open Window",
                         new ClickListener() {
                             @Override
-                            public void buttonClick(ClickEvent event) {
+                            public void buttonClick(final ClickEvent event) {
                                 getUI().addWindow(win);
                                 win.center();
                                 win.focus();
@@ -690,7 +697,7 @@ public class CommonParts extends VerticalLayout implements View {
                 final CheckBox hidden = new CheckBox("Hidden");
                 hidden.addValueChangeListener(new ValueChangeListener() {
                     @Override
-                    public void valueChange(ValueChangeEvent event) {
+                    public void valueChange(final ValueChangeEvent event) {
                         win.setVisible(!hidden.getValue());
                     }
                 });
@@ -698,7 +705,7 @@ public class CommonParts extends VerticalLayout implements View {
 
                 win.addCloseListener(new CloseListener() {
                     @Override
-                    public void windowClose(CloseEvent e) {
+                    public void windowClose(final CloseEvent e) {
                         show.setEnabled(true);
                     }
                 });
@@ -710,7 +717,7 @@ public class CommonParts extends VerticalLayout implements View {
     }
 
     @Override
-    public void enter(ViewChangeEvent event) {
+    public void enter(final ViewChangeEvent event) {
         // TODO Auto-generated method stub
 
     }

@@ -145,4 +145,9 @@
   .v-menubar-color1 {
     @include valo-menubar-style($background-color: $v-selection-color, $unit-size: null);
   }
+  
+  .content-common,
+  .content-labels {
+  	max-width: 800px;
+  }
 }
