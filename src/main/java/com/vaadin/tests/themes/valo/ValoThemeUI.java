@@ -164,6 +164,8 @@ public class ValoThemeUI extends UI {
             navigator.navigateTo("common");
         }
 
+        navigator.setErrorView(CommonParts.class);
+
         navigator.addViewChangeListener(new ViewChangeListener() {
 
             @Override
