@@ -5,15 +5,30 @@ import org.jsoup.nodes.Element;
 import com.vaadin.server.BootstrapFragmentResponse;
 import com.vaadin.server.BootstrapListener;
 import com.vaadin.server.BootstrapPageResponse;
+import com.vaadin.server.CustomizedSystemMessages;
 import com.vaadin.server.ServiceException;
 import com.vaadin.server.SessionInitEvent;
 import com.vaadin.server.SessionInitListener;
+import com.vaadin.server.SystemMessages;
+import com.vaadin.server.SystemMessagesInfo;
+import com.vaadin.server.SystemMessagesProvider;
 
 public class ValoThemeSessionInitListener implements SessionInitListener {
 
     @Override
     public void sessionInit(final SessionInitEvent event)
             throws ServiceException {
+        event.getService().setSystemMessagesProvider(
+                new SystemMessagesProvider() {
+
+                    @Override
+                    public SystemMessages getSystemMessages(
+                            final SystemMessagesInfo systemMessagesInfo) {
+                        CustomizedSystemMessages csm = new CustomizedSystemMessages();
+                        csm.setSessionExpiredNotificationEnabled(false);
+                        return csm;
+                    }
+                });
         event.getSession().addBootstrapListener(new BootstrapListener() {
 
             @Override
