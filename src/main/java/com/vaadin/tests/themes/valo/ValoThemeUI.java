@@ -266,7 +266,7 @@ public class ValoThemeUI extends UI {
         menuItems.put("tabs", "Tabs");
         menuItems.put("accordions", "Accordions");
         menuItems.put("popupviews", "Popup Views");
-        menuItems.put("calendar", "Calendar");
+        // menuItems.put("calendar", "Calendar");
         menuItems.put("forms", "Forms");
 
         final HorizontalLayout top = new HorizontalLayout();
@@ -335,7 +335,7 @@ public class ValoThemeUI extends UI {
                 label.setSizeUndefined();
                 menuItemsLayout.addComponent(label);
             }
-            if (item.getKey().equals("calendar")) {
+            if (item.getKey().equals("forms")) {
                 label.setValue(label.getValue()
                         + " <span class=\"valo-menu-badge\">" + count
                         + "</span>");
