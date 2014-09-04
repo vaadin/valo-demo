@@ -196,11 +196,7 @@ public class DateFields extends VerticalLayout implements View {
     }
 
     private void setDate(DateField date) {
-        if (ValoThemeUI.isTestMode()) {
-            date.setValue(new Date(2014 - 1900, 5, 7));
-        } else {
-            date.setValue(new Date());
-        }
+        date.setValue(new Date());
     }
 
     @Override

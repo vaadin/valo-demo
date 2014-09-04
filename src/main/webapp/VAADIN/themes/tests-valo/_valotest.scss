@@ -1,3 +1,5 @@
+@import "icons/sampler";
+
 @mixin valotest {
   @include valo;
 
@@ -32,122 +34,104 @@
     }
   }
 
-  $color1: hsl(220, 5%, 38%);
-  $color2: #5d73c0;
-  $color3: #3dbc1a;
-  $color4: #d2f4f3;
-  $color5: #fe902a;
-  $colors: $color1, $color2, $color3, $color4, $color5;
 
-  .v-textfield-color1 {
-    @include valo-textfield-style($background-color: $color1);
+
+
+  .styleguide-view {
+    > .v-spacing {
+      height: $v-unit-size;
+    }
+
+    > .v-slot > .h1 {
+      margin-bottom: 0;
+    }
   }
 
-  .v-textfield-color2 {
-    @include valo-textfield-style($background-color: $color3);
+  .documentation-item {
+    padding: round($v-unit-size / 3);
+    position: relative;
+
+    .documentation {
+      width: 22%;
+      white-space: pre-wrap;
+
+      h3 {
+        margin-top: $v-layout-spacing-vertical;
+      }
+    }
+
+    .code-example {
+      @include valo-panel-well-style;
+      color: valo-font-color($v-app-background-color, 0.5);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 35% !important;
+      height: auto !important;
+      white-space: pre-wrap;
+
+      pre {
+        margin: 0;
+      }
+    }
+
+    .v-label.code-example,
+    .code-example .v-label {
+      padding: round($v-unit-size / 3);
+    }
+
+    .example {
+      max-width: 43%;
+      padding-top: $v-layout-spacing-vertical;
+      padding-bottom: $v-layout-spacing-vertical;
+    }
+
+    @include width-range($min: 1001px) {
+      .code-example {
+        border-top-width: 0;
+        border-right-width: 0;
+        border-bottom-width: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+
+    @include width-range($max: 1000px) {
+      .code-example {
+        position: static;
+        display: block;
+        width: auto !important;
+        left: 0;
+        margin: round($v-unit-size / 2) round($v-unit-size / -3) round($v-unit-size / -3);
+        border-left-width: 0;
+        border-right-width: 0;
+        border-bottom-width: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        @include box-sizing(content-box);
+      }
+
+      .documentation {
+        width: 30%;
+      }
+
+      .example {
+        max-width: 70%;
+      }
+    }
+
+    @include width-range($max: 760px - ($v-layout-margin-left + $v-layout-margin-right)) {
+      .documentation {
+        width: 100%;
+        border-bottom: valo-border($strength: 0.5);
+      }
+
+      .example {
+        max-width: 100%;
+      }
+    }
   }
 
-  .v-textfield-color3 {
-    @include valo-textfield-style($background-color: $color4);
-  }
 
-
-  .v-textarea-color1 {
-    @include valo-textarea-style($background-color: $color1);
-  }
-
-  .v-textarea-color2 {
-    @include valo-textarea-style($background-color: $color3);
-  }
-
-  .v-textarea-color3 {
-    @include valo-textarea-style($background-color: $color4);
-  }
-
-
-  .v-datefield-color1 {
-    @include valo-datefield-style($background-color: $color1);
-  }
-
-  .v-datefield-color2 {
-    @include valo-datefield-style($background-color: $color3);
-  }
-
-  .v-datefield-color3 {
-    @include valo-datefield-style($background-color: $color4);
-  }
-
-
-  .v-filterselect-color1 {
-    @include valo-combobox-style($background-color: $color1);
-  }
-
-  .v-filterselect-color2 {
-    @include valo-combobox-style($background-color: $color3);
-  }
-
-  .v-filterselect-color3 {
-    @include valo-combobox-style($background-color: $color4);
-  }
-
-
-  $copy: $v-selection-color;
-  $v-selection-color: white;
-  .v-checkbox-color1 {
-    @include valo-checkbox-style($background-color: $color1);
-  }
-
-  .v-checkbox-color2 {
-    @include valo-checkbox-style($background-color: $color2);
-  }
-  $v-selection-color: $copy;
-
-
-  .v-slider-color1 {
-    @include valo-slider-handle-style($background-color: $color1);
-  }
-
-  .v-slider-color2 {
-    @include valo-slider-track-style($background-color: $color3);
-  }
-
-  .v-slider-color3 {
-    @include valo-slider-indicator-style($background-color: #dcdc1e);
-  }
-
-
-  .v-panel-caption-color1 {
-    @include valo-panel-caption-style($background-color: $color1);
-  }
-
-  .v-panel-caption-color2 {
-    @include valo-panel-caption-style($background-color: $color3);
-  }
-
-  .v-panel-caption-color3 {
-    @include valo-panel-caption-style($background-color: $color5);
-  }
-
-  // Show splitpanel borders
-  .v-splitpanel-vertical,
-  .v-splitpanel-horizontal {
-    outline: 1px dotted rgba(gray, .2);
-  }
-
-  .v-slider-ticks {
-    @include valo-slider-ticks($tick-count: 5);
-  }
-
-  .v-accordion-item-color1 .v-accordion-item-caption {
-    @include valo-accordion-item-caption-style($background-color: $color2);
-  }
-
-  .v-menubar-color1 {
-    @include valo-menubar-style($background-color: $v-selection-color, $unit-size: null);
-  }
-  
-  .content-common,
-  .content-labels {
-  	max-width: 800px;
-  }
 }

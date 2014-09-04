@@ -152,7 +152,6 @@ public class CalendarTest extends GridLayout implements View {
         setSpacing(true);
 
         // handleURLParams(request.getParameterMap());
-        testBench = ValoThemeUI.isTestMode();
 
         initContent();
     }

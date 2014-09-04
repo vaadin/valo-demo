@@ -132,20 +132,17 @@ public class CommonParts extends VerticalLayout implements View {
         spinnerDesc.setCaption("Spinner");
         content.addComponent(spinnerDesc);
 
-        if (!ValoThemeUI.isTestMode()) {
-            final Label spinner = new Label();
-            spinner.addStyleName("spinner");
+        final Label spinner = new Label();
+        spinner.addStyleName("spinner");
 
-            Button showSpinnerButton = new Button("Show spinner",
-                    new ClickListener() {
-                        @Override
-                        public void buttonClick(final ClickEvent event) {
-                            content.replaceComponent(event.getComponent(),
-                                    spinner);
-                        }
-                    });
-            content.addComponent(showSpinnerButton);
-        }
+        Button showSpinnerButton = new Button("Show spinner",
+                new ClickListener() {
+                    @Override
+                    public void buttonClick(final ClickEvent event) {
+                        content.replaceComponent(event.getComponent(), spinner);
+                    }
+                });
+        content.addComponent(showSpinnerButton);
 
         return p;
     }

@@ -15,32 +15,61 @@
  */
 package com.vaadin.tests.themes.valo;
 
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
+import com.vaadin.server.Resource;
+import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.ValoTheme;
 
 /**
  * 
  * @since
  * @author Vaadin Ltd
  */
-public class ButtonsAndLinks extends VerticalLayout implements View {
-    /**
- * 
- */
+public class ButtonsAndLinks extends StyleguideView {
     public ButtonsAndLinks() {
-        setMargin(true);
 
-        Label h1 = new Label("Buttons");
-        h1.addStyleName("h1");
-        addComponent(h1);
+        DocumentationItem di = new DocumentationItem(
+                "Button Sizes",
+                "There are five different size variants for the Button component. Each size can be used with any of the other additional styles.",
+                "Button button = new Button(\"Button caption\");\nbutton.addStyleName(ValoTheme.BUTTON_TINY);\nbutton.addStyleName(ValoTheme.BUTTON_SMALL);\nbutton.addStyleName(ValoTheme.BUTTON_LARGE);\nbutton.addStyleName(ValoTheme.BUTTON_HUGE);",
+                "Sass code here");
+        di.setExample(new VerticalLayout() {
+            {
+                setMargin(new MarginInfo(false, true, false, true));
+
+                HorizontalLayout row = new HorizontalLayout();
+                row.addStyleName("wrapping");
+                row.setSpacing(true);
+                addComponent(row);
+
+                Button button = new Button("Tiny");
+                button.addStyleName(ValoTheme.BUTTON_TINY);
+                row.addComponent(button);
+
+                button = new Button("Small");
+                button.addStyleName(ValoTheme.BUTTON_SMALL);
+                row.addComponent(button);
+
+                button = new Button("Normal");
+                row.addComponent(button);
+
+                button = new Button("Large");
+                button.addStyleName(ValoTheme.BUTTON_LARGE);
+                row.addComponent(button);
+
+                button = new Button("Huge");
+                button.addStyleName(ValoTheme.BUTTON_HUGE);
+                row.addComponent(button);
+
+            }
+        });
+        addComponent(di);
 
         HorizontalLayout row = new HorizontalLayout();
         row.addStyleName("wrapping");
@@ -147,10 +176,6 @@ public class ButtonsAndLinks extends VerticalLayout implements View {
         NativeButton nbutton = new NativeButton("Native");
         row.addComponent(nbutton);
 
-        h1 = new Label("Links");
-        h1.addStyleName("h1");
-        addComponent(h1);
-
         row = new HorizontalLayout();
         row.addStyleName("wrapping");
         row.setSpacing(true);
@@ -181,9 +206,13 @@ public class ButtonsAndLinks extends VerticalLayout implements View {
     }
 
     @Override
-    public void enter(ViewChangeEvent event) {
-        // TODO Auto-generated method stub
+    public Resource getMenuIcon() {
+        return SamplerIcon.BUTTON;
+    }
 
+    @Override
+    public String getTitle() {
+        return "Buttons & Links";
     }
 
 }

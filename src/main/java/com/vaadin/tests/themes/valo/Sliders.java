@@ -158,12 +158,10 @@ public class Sliders extends VerticalLayout implements View {
         // pb2.setValue(0.6f);
         row.addComponent(pb2);
 
-        if (!ValoThemeUI.isTestMode()) {
-            ProgressBar pb3 = new ProgressBar();
-            pb3.setIndeterminate(true);
-            pb3.setCaption("Indeterminate");
-            row.addComponent(pb3);
-        }
+        ProgressBar pb3 = new ProgressBar();
+        pb3.setIndeterminate(true);
+        pb3.setCaption("Indeterminate");
+        row.addComponent(pb3);
     }
 
     float progress = 0;
@@ -197,21 +195,14 @@ public class Sliders extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeEvent event) {
-        if (!ValoThemeUI.isTestMode()) {
-            getUI().setPollInterval(1000);
-            update.start();
-        } else {
-            pb.setValue(0.3f);
-            pb2.setValue(0.6f);
-        }
+        getUI().setPollInterval(1000);
+        update.start();
     }
 
     @Override
     public void detach() {
-        if (!ValoThemeUI.isTestMode()) {
-            getUI().setPollInterval(-1);
-            update.interrupt();
-        }
+        getUI().setPollInterval(-1);
+        update.interrupt();
         super.detach();
     }
 

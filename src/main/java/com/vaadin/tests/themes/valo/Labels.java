@@ -15,107 +15,127 @@
  */
 package com.vaadin.tests.themes.valo;
 
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Resource;
 import com.vaadin.shared.ui.MarginInfo;
-import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.ValoTheme;
 
 /**
  * 
  * @since
  * @author Vaadin Ltd
  */
-public class Labels extends VerticalLayout implements View {
+public class Labels extends StyleguideView {
     public Labels() {
-        setMargin(true);
-        addStyleName("content-labels");
 
-        Label h1 = new Label("Labels");
-        h1.addStyleName("h1");
-        addComponent(h1);
+        // Headings
 
-        VerticalLayout left = new VerticalLayout();
-        left.setMargin(new MarginInfo(false, true, false, false));
-        addComponent(left);
+        DocumentationItem di = new DocumentationItem(
+                "Headings",
+                "<h1> <h2> <h3> and <h4> elements inside a Label will behave the same as a Label with a corresponding style name.",
+                "Label label = new Label(\"Heading\");\nlabel.addStyleName(ValoTheme.LABEL_H1);\nlabel.addStyleName(ValoTheme.LABEL_H2);\nlabel.addStyleName(ValoTheme.LABEL_H3);\nlabel.addStyleName(ValoTheme.LABEL_H4);\n\n// or\n\nnew Label(\"<h1>Heading 1</h1>\", ContentMode.HTML);\nnew Label(\"<h2>Heading 2</h2>\", ContentMode.HTML);\nnew Label(\"<h3>Heading 3</h3>\", ContentMode.HTML);\nnew Label(\"<h4>Heading 4</h4>\", ContentMode.HTML);",
+                null);
+        di.setExample(new VerticalLayout() {
+            {
+                setMargin(new MarginInfo(false, true, false, true));
 
-        Label huge = new Label("Huge type for display text.");
-        huge.addStyleName("huge");
-        left.addComponent(huge);
+                Label l = new Label("Heading 1");
+                l.addStyleName(ValoTheme.LABEL_H1);
+                addComponent(l);
+                l = new Label("Heading 2");
+                l.addStyleName(ValoTheme.LABEL_H2);
+                addComponent(l);
+                l = new Label("Heading 3");
+                l.addStyleName(ValoTheme.LABEL_H3);
+                addComponent(l);
+                l = new Label("Heading 4");
+                l.addStyleName(ValoTheme.LABEL_H4);
+                addComponent(l);
+            }
+        });
+        addComponent(di);
 
-        Label large = new Label(
-                "Large type for introductory text. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu.");
-        large.addStyleName("large");
-        left.addComponent(large);
+        // Text sizes
 
-        Label h2 = new Label("Subtitle");
-        h2.addStyleName("h2");
-        left.addComponent(h2);
+        di = new DocumentationItem(
+                "Text Sizes",
+                "A typographic scale including five different sizes is available.",
+                "Label label = new Label(\"Text\");\n"
+                        + "label.addStyleName(ValoTheme.LABEL_HUGE);\n"
+                        + "label.addStyleName(ValoTheme.LABEL_LARGE);\n"
+                        + "label.addStyleName(ValoTheme.LABEL_SMALL);\n"
+                        + "label.addStyleName(ValoTheme.LABEL_TINY);", null);
+        di.setExample(new VerticalLayout() {
+            {
+                setMargin(new MarginInfo(false, true, false, true));
+                setSpacing(true);
 
-        Label normal = new Label(
-                "Normal type for plain text, with a <a href=\"https://vaadin.com\">regular link</a>. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu.",
-                ContentMode.HTML);
-        left.addComponent(normal);
+                Label l = new Label("Huge text.");
+                l.addStyleName(ValoTheme.LABEL_HUGE);
+                addComponent(l);
+                l = new Label("Large text.");
+                l.addStyleName(ValoTheme.LABEL_LARGE);
+                addComponent(l);
+                l = new Label("Normal text.");
+                addComponent(l);
+                l = new Label("Small text.");
+                l.addStyleName(ValoTheme.LABEL_SMALL);
+                addComponent(l);
+                l = new Label("Tiny text.");
+                l.addStyleName(ValoTheme.LABEL_TINY);
+                addComponent(l);
+            }
+        });
+        addComponent(di);
 
-        Label h3 = new Label("Small Title");
-        h3.addStyleName("h3");
-        left.addComponent(h3);
+        // Additional styles
 
-        Label small = new Label(
-                "Small type for additional text. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu.");
-        small.addStyleName("small");
-        left.addComponent(small);
+        di = new DocumentationItem(
+                "Additional Styles",
+                "Additional Label styles can be mixed together with any other Label styles freely to create new combinations.",
+                "Label label = new Label(\"Text\");\nlabel.addStyleName(ValoTheme.LABEL_BOLD);\nlabel.addStyleName(ValoTheme.LABEL_LIGHT);\nlabel.addStyleName(ValoTheme.LABEL_COLORED);\nlabel.addStyleName(ValoTheme.LABEL_SUCCESS);\nlabel.addStyleName(ValoTheme.LABEL_FAILURE);",
+                null);
+        di.setExample(new VerticalLayout() {
+            {
+                setMargin(new MarginInfo(false, true, false, true));
+                setSpacing(true);
 
-        Label tiny = new Label("Tiny type for minor text.");
-        tiny.addStyleName("tiny");
-        left.addComponent(tiny);
-
-        Label h4 = new Label("Section Title");
-        h4.addStyleName("h4");
-        left.addComponent(h4);
-
-        normal = new Label(
-                "Normal type for plain text. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu.");
-        left.addComponent(normal);
-
-        Panel p = new Panel("Additional Label Styles");
-        addComponent(p);
-
-        VerticalLayout right = new VerticalLayout();
-        right.setSpacing(true);
-        right.setMargin(true);
-        p.setContent(right);
-
-        Label label = new Label(
-                "Bold type for prominent text. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu.");
-        label.addStyleName("bold");
-        right.addComponent(label);
-
-        label = new Label(
-                "Light type for subtle text. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu.");
-        label.addStyleName("light");
-        right.addComponent(label);
-
-        label = new Label(
-                "Colored type for highlighted text. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu.");
-        label.addStyleName("colored");
-        right.addComponent(label);
-
-        label = new Label("A label for success");
-        label.addStyleName("success");
-        right.addComponent(label);
-
-        label = new Label("A label for failure");
-        label.addStyleName("failure");
-        right.addComponent(label);
+                Label l = new Label("Bold text.");
+                l.addStyleName(ValoTheme.LABEL_BOLD);
+                addComponent(l);
+                l = new Label("Light text.");
+                l.addStyleName(ValoTheme.LABEL_LIGHT);
+                addComponent(l);
+                l = new Label("Colored text.");
+                l.addStyleName(ValoTheme.LABEL_COLORED);
+                addComponent(l);
+                l = new Label("Success text.");
+                l.addStyleName(ValoTheme.LABEL_SUCCESS);
+                addComponent(l);
+                l = new Label("Failure text.");
+                l.addStyleName(ValoTheme.LABEL_FAILURE);
+                addComponent(l);
+                l = new Label("Colored Heading 4");
+                l.addStyleName(ValoTheme.LABEL_COLORED);
+                l.addStyleName(ValoTheme.LABEL_H4);
+                addComponent(l);
+                l = new Label("Large bold text.");
+                l.addStyleName(ValoTheme.LABEL_LARGE);
+                l.addStyleName(ValoTheme.LABEL_BOLD);
+                addComponent(l);
+                l = new Label("Tiny light text.");
+                l.addStyleName(ValoTheme.LABEL_TINY);
+                l.addStyleName(ValoTheme.LABEL_LIGHT);
+                addComponent(l);
+            }
+        });
+        addComponent(di);
 
     }
 
     @Override
-    public void enter(final ViewChangeEvent event) {
-        // TODO Auto-generated method stub
-
+    public Resource getMenuIcon() {
+        return SamplerIcon.LABEL;
     }
 }
