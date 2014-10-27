@@ -117,7 +117,7 @@ public class Forms extends VerticalLayout implements View {
         period.setTextInputAllowed(false);
         period.addItem("Daily");
         period.addItem("Weekly");
-        period.addItem("Montly");
+        period.addItem("Monthly");
         period.setNullSelectionAllowed(false);
         period.select("Weekly");
         period.addStyleName("small");
