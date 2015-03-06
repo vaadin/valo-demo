@@ -69,7 +69,7 @@ public class ValoThemeUI extends UI {
     private boolean testMode = false;
 
     @WebServlet(value = "/*", asyncSupported = true)
-    @VaadinServletConfiguration(productionMode = true, ui = ValoThemeUI.class)
+    @VaadinServletConfiguration(productionMode = false, ui = ValoThemeUI.class)
     public static class Servlet extends VaadinServlet {
 
         @Override
@@ -134,6 +134,7 @@ public class ValoThemeUI extends UI {
         root.setWidth("100%");
 
         root.addMenu(buildMenu());
+        addStyleName(ValoTheme.UI_WITH_MENU);
 
         navigator = new Navigator(this, viewDisplay);
 
