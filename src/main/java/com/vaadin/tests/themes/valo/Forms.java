@@ -17,8 +17,7 @@ package com.vaadin.tests.themes.valo;
 
 import java.util.Date;
 
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Resource;
 import com.vaadin.server.UserError;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.Alignment;
@@ -35,24 +34,17 @@ import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.RichTextArea;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
 
 /**
  * 
  * @since
  * @author Vaadin Ltd
  */
-public class Forms extends VerticalLayout implements View {
+public class Forms extends StyleguideView {
     public Forms() {
-        setSpacing(true);
-        setMargin(true);
-
-        Label title = new Label("Forms");
-        title.addStyleName("h1");
-        addComponent(title);
 
         final FormLayout form = new FormLayout();
-        form.setMargin(false);
+        form.setMargin(true);
         form.setWidth("800px");
         form.addStyleName("light");
         addComponent(form);
@@ -182,8 +174,7 @@ public class Forms extends VerticalLayout implements View {
     }
 
     @Override
-    public void enter(ViewChangeEvent event) {
-        // TODO Auto-generated method stub
-
+    public Resource getMenuIcon() {
+        return SamplerIcon.LABEL;
     }
 }

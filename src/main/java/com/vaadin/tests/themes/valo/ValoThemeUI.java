@@ -99,6 +99,7 @@ public class ValoThemeUI extends UI {
         {
             add(new Labels());
             add(new ButtonsAndLinks());
+            add(new Forms());
         }
     };
 
@@ -205,7 +206,7 @@ public class ValoThemeUI extends UI {
         label.setSizeUndefined();
         menuItemsLayout.addComponent(label);
 
-        int count = -1;
+        int count = 0;
         for (final StyleguideView view : menuItems) {
             navigator.addView(view.getFragment(), view);
             Button b = new Button(view.getTitle(), new ClickListener() {
