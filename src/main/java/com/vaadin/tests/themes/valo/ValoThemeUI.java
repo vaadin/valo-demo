@@ -26,7 +26,6 @@ import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.data.Container;
 import com.vaadin.data.Container.Hierarchical;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -90,6 +89,7 @@ public class ValoThemeUI extends UI {
         themeVariants.put("tests-valo-flat", "Flat");
         themeVariants.put("tests-valo-light", "Light");
         themeVariants.put("tests-valo-metro", "Metro");
+        themeVariants.put("tests-valo-reindeer", "Migrate Reindeer");
     }
     private final TestIcon testIcon = new TestIcon(100);
 
@@ -263,14 +263,16 @@ public class ValoThemeUI extends UI {
         menuItems.put("colorpickers", "Color Pickers");
         menuItems.put("menubars", "Menu Bars");
         menuItems.put("trees", "Trees");
-        menuItems.put("tables", "Tables");
+        menuItems.put("tables", "Tables & Grids");
         menuItems.put("dragging", "Drag and Drop");
         menuItems.put("panels", "Panels");
         menuItems.put("splitpanels", "Split Panels");
         menuItems.put("tabs", "Tabs");
         menuItems.put("accordions", "Accordions");
         menuItems.put("popupviews", "Popup Views");
-        // menuItems.put("calendar", "Calendar");
+        if (getPage().getBrowserWindowWidth() >= 768) {
+            menuItems.put("calendar", "Calendar");
+        }
         menuItems.put("forms", "Forms");
 
         final HorizontalLayout top = new HorizontalLayout();
@@ -339,7 +341,7 @@ public class ValoThemeUI extends UI {
                 label.setSizeUndefined();
                 menuItemsLayout.addComponent(label);
             }
-            if (item.getKey().equals("forms")) {
+            if (item.getKey().equals("calendar")) {
                 label.setValue(label.getValue()
                         + " <span class=\"valo-menu-badge\">" + count
                         + "</span>");
@@ -422,7 +424,7 @@ public class ValoThemeUI extends UI {
     static final String INDEX_PROPERTY = "index";
 
     @SuppressWarnings("unchecked")
-    static Container generateContainer(final int size,
+    static IndexedContainer generateContainer(final int size,
             final boolean hierarchical) {
         final TestIcon testIcon = new TestIcon(90);
         final IndexedContainer container = hierarchical ? new HierarchicalContainer()

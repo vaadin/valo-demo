@@ -146,8 +146,9 @@
     @include valo-menubar-style($background-color: $v-selection-color, $unit-size: null);
   }
   
-  .content-common,
-  .content-labels {
-  	max-width: 800px;
+  .valo-content > .v-layout {
+  	max-width: 960px;
+  	display: block;
+  	margin: 0 auto;
   }
 }
