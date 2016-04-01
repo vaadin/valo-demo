@@ -23,6 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.PreserveOnRefresh;
+import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -62,6 +63,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 @Theme("tests-valo")
 @Title("Valo Theme Test")
+@StyleSheet("valo-theme-ui.css")
 @PreserveOnRefresh
 public class ValoThemeUI extends UI {
 

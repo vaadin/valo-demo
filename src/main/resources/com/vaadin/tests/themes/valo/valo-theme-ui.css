@@ -1,0 +1,26 @@
+.tests-valo #themeSelect {
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	right: 0;
+	padding: 0 10px;
+	background-color: #ededed;
+	background-color: rgba(237, 237, 237, 0.9);
+	color: #464646;
+	border-radius: 0 0 0 4px;
+}
+
+.tests-valo #themeSelect:before {
+	content: "Theme:";
+}
+
+.tests-valo #themeSelect select {
+	background: transparent;
+	color: inherit;
+	border: none;
+	display: inline-block;
+}
+
+.tests-valo .v-ui[width-range~="0-800px"] #themeSelect {
+	top: 37px;
+}
