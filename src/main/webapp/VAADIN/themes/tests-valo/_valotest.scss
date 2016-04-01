@@ -20,7 +20,6 @@
     @include valo-textfield-style($background-color: $color4);
   }
 
-
   .v-textarea-color1 {
     @include valo-textarea-style($background-color: $color1);
   }
@@ -32,7 +31,6 @@
   .v-textarea-color3 {
     @include valo-textarea-style($background-color: $color4);
   }
-
 
   .v-datefield-color1 {
     @include valo-datefield-style($background-color: $color1);
@@ -46,7 +44,6 @@
     @include valo-datefield-style($background-color: $color4);
   }
 
-
   .v-filterselect-color1 {
     @include valo-combobox-style($background-color: $color1);
   }
@@ -58,7 +55,6 @@
   .v-filterselect-color3 {
     @include valo-combobox-style($background-color: $color4);
   }
-
 
   $copy: $v-selection-color;
   $v-selection-color: white;
@@ -97,12 +93,6 @@
     @include valo-panel-caption-style($background-color: $color5);
   }
 
-  // Show splitpanel borders
-  .v-splitpanel-vertical,
-  .v-splitpanel-horizontal {
-    outline: 1px dotted rgba(gray, .2);
-  }
-
   .v-slider-ticks {
     @include valo-slider-ticks($tick-count: 5);
   }
@@ -113,11 +103,5 @@
 
   .v-menubar-color1 {
     @include valo-menubar-style($background-color: $v-selection-color, $unit-size: null);
-  }
-  
-  .valo-content > .v-layout {
-  	max-width: 960px;
-  	display: block;
-  	margin: 0 auto;
   }
 }
