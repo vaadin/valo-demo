@@ -1,6 +1,6 @@
 @import "variables";
-@import "../tests-valo/valotest";
+@import "../valo/valo";
 
 .tests-valo-light {
-   @include valotest;
+   @include valo;
 }

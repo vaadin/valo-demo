@@ -1,4 +1,4 @@
-.tests-valo #themeSelect {
+.valothemeui #themeSelect {
 	position: fixed;
 	z-index: 1000;
 	top: 0;
@@ -10,26 +10,27 @@
 	border-radius: 0 0 0 4px;
 }
 
-.tests-valo #themeSelect:before {
+.valothemeui #themeSelect:before {
 	content: "Theme:";
 }
 
-.tests-valo #themeSelect select {
+.valothemeui #themeSelect select {
 	background: transparent;
 	color: inherit;
 	border: none;
 	display: inline-block;
 }
 
-.tests-valo .v-ui[width-range~="0-800px"] #themeSelect {
+.valothemeui .v-ui[width-range~="0-800px"] #themeSelect {
 	top: 37px;
 }
 
-.tests-valo .v-splitpanel-vertical, .tests-valo .v-splitpanel-horizontal {
+.valothemeui .v-splitpanel-vertical, 
+.valothemeui .v-splitpanel-horizontal {
 	outline: 1px dotted rgba(128, 128, 128, 0.2);
 }
 
-.tests-valo .valo-content > .v-layout {
+.valothemeui .valo-content > .v-layout {
 	max-width: 960px;
 	display: block;
 	margin: 0 auto;

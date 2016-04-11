@@ -37,6 +37,7 @@ import com.vaadin.event.Action;
 import com.vaadin.event.Action.Handler;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.ClassResource;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Page;
 import com.vaadin.server.Resource;
@@ -61,7 +62,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.themes.ValoTheme;
 
-@Theme("tests-valo")
+@Theme("valo")
 @Title("Valo Theme Test")
 @StyleSheet("valo-theme-ui.css")
 @PreserveOnRefresh
@@ -83,8 +84,8 @@ public class ValoThemeUI extends UI {
 
     private static LinkedHashMap<String, String> themeVariants = new LinkedHashMap<String, String>();
     static {
+        themeVariants.put(ValoTheme.THEME_NAME, "Valo");
         themeVariants.put("midsummer-night", "Midsummer Night");
-        themeVariants.put("tests-valo", "Default");
         themeVariants.put("tests-valo-blueprint", "Blueprint");
         themeVariants.put("tests-valo-dark", "Dark");
         themeVariants.put("tests-valo-facebook", "Facebook");
@@ -312,7 +313,7 @@ public class ValoThemeUI extends UI {
         final StringGenerator sg = new StringGenerator();
         final MenuItem settingsItem = settings.addItem(sg.nextString(true)
                 + " " + sg.nextString(true) + sg.nextString(false),
-                new ThemeResource("../tests-valo/img/profile-pic-300px.jpg"),
+                new ClassResource("profile-pic-300px.jpg"),
                 null);
         settingsItem.addItem("Edit Profile", null);
         settingsItem.addItem("Preferences", null);
@@ -388,7 +389,7 @@ public class ValoThemeUI extends UI {
                     .setValue(themeVariants.get(identifier));
         }
 
-        ns.setValue("tests-valo");
+        ns.setValue(ValoTheme.THEME_NAME);
         ns.addValueChangeListener(new ValueChangeListener() {
             @Override
             public void valueChange(final ValueChangeEvent event) {

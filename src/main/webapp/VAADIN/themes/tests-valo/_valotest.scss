@@ -1,7 +1,0 @@
-@mixin valotest {
-  @include valo;
-
-  .v-slider-ticks {
-    @include valo-slider-ticks($tick-count: 5);
-  }
-}
