@@ -162,7 +162,6 @@ public class ButtonsAndLinks extends VerticalLayout implements View {
 
         link = new Link("Link with icon", new ExternalResource(
                 "https://vaadin.com"));
-        link.addStyleName("color3");
         link.setIcon(testIcon.get());
         row.addComponent(link);
 

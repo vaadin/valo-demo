@@ -118,24 +118,6 @@ public class DateFields extends VerticalLayout implements View {
         date.setResolution(Resolution.YEAR);
         row.addComponent(date);
 
-        date = new DateField("Custom color");
-        setDate(date);
-        date.setResolution(Resolution.DAY);
-        date.addStyleName("color1");
-        row.addComponent(date);
-
-        date = new DateField("Custom color");
-        setDate(date);
-        date.setResolution(Resolution.DAY);
-        date.addStyleName("color2");
-        row.addComponent(date);
-
-        date = new DateField("Custom color");
-        setDate(date);
-        date.setResolution(Resolution.DAY);
-        date.addStyleName("color3");
-        row.addComponent(date);
-
         date = new DateField("Small");
         setDate(date);
         date.setResolution(Resolution.DAY);

@@ -68,13 +68,6 @@ public class Accordions extends VerticalLayout implements View {
                         "Nihil hic munitissimus habendi senatus locus, nihil horum? Sed haec quis possit intrepidus aestimare tellus."));
             }
         }, "Third Caption", testIcon.get());
-        ac.addTab(new VerticalLayout() {
-            {
-                setMargin(true);
-                addComponent(new Label(
-                        "Inmensae subtilitatis, obscuris et malesuada fames. Quisque ut dolor gravida, placerat libero vel, euismod."));
-            }
-        }, "Custom Caption Style", testIcon.get()).setStyleName("color1");
         return ac;
     }
 

@@ -74,15 +74,6 @@ public class MenuBars extends VerticalLayout implements View {
         split.addStyleName("borderless");
         wrap.addComponent(split);
 
-        split = getMenuButton("Themed", false);
-        split.addStyleName("color1");
-        wrap.addComponent(split);
-
-        split = getMenuButton("Small", false);
-        split.addStyleName("color1");
-        split.addStyleName("small");
-        wrap.addComponent(split);
-
         h2 = new Label("Split Button");
         h2.addStyleName("h2");
         addComponent(h2);
@@ -100,15 +91,6 @@ public class MenuBars extends VerticalLayout implements View {
 
         split = getMenuButton("Borderless", true);
         split.addStyleName("borderless");
-        wrap.addComponent(split);
-
-        split = getMenuButton("Themed", true);
-        split.addStyleName("color1");
-        wrap.addComponent(split);
-
-        split = getMenuButton("Small", true);
-        split.addStyleName("color1");
-        split.addStyleName("small");
         wrap.addComponent(split);
     }
 

@@ -115,30 +115,6 @@ public class ComboBoxes extends VerticalLayout implements View {
         combo.setEnabled(false);
         row.addComponent(combo);
 
-        combo = new ComboBox("Custom color");
-        combo.setInputPrompt("You can type here");
-        combo.setContainerDataSource(ValoThemeUI.generateContainer(200, false));
-        combo.setItemCaptionPropertyId(ValoThemeUI.CAPTION_PROPERTY);
-        combo.setItemIconPropertyId(ValoThemeUI.ICON_PROPERTY);
-        combo.addStyleName("color1");
-        row.addComponent(combo);
-
-        combo = new ComboBox("Custom color");
-        combo.setInputPrompt("You can type here");
-        combo.setContainerDataSource(ValoThemeUI.generateContainer(200, false));
-        combo.setItemCaptionPropertyId(ValoThemeUI.CAPTION_PROPERTY);
-        combo.setItemIconPropertyId(ValoThemeUI.ICON_PROPERTY);
-        combo.addStyleName("color2");
-        row.addComponent(combo);
-
-        combo = new ComboBox("Custom color");
-        combo.setInputPrompt("You can type here");
-        combo.setContainerDataSource(ValoThemeUI.generateContainer(200, false));
-        combo.setItemCaptionPropertyId(ValoThemeUI.CAPTION_PROPERTY);
-        combo.setItemIconPropertyId(ValoThemeUI.ICON_PROPERTY);
-        combo.addStyleName("color3");
-        row.addComponent(combo);
-
         combo = new ComboBox("Small");
         combo.setInputPrompt("You can type here");
         combo.setContainerDataSource(ValoThemeUI.generateContainer(200, false));

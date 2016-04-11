@@ -53,16 +53,7 @@ public class CheckBoxes extends VerticalLayout implements View {
         check.setDescription("No caption");
         row.addComponent(check);
 
-        check = new CheckBox("Custom color", true);
-        check.addStyleName("color1");
-        row.addComponent(check);
-
         TestIcon testIcon = new TestIcon(30);
-        check = new CheckBox("Custom color", true);
-        check.addStyleName("color2");
-        check.setIcon(testIcon.get());
-        row.addComponent(check);
-
         check = new CheckBox("With Icon", true);
         check.setIcon(testIcon.get());
         row.addComponent(check);

@@ -46,35 +46,10 @@ public class Sliders extends VerticalLayout implements View {
         slider.setWidth("200px");
         row.addComponent(slider);
 
-        slider = new Slider("Custom handle");
-        slider.setValue(50.0);
-        slider.setWidth("200px");
-        slider.addStyleName("color1");
-        row.addComponent(slider);
-
-        slider = new Slider("Custom track");
-        slider.setValue(50.0);
-        slider.setWidth("200px");
-        slider.addStyleName("color2");
-        row.addComponent(slider);
-
-        slider = new Slider("Custom indicator");
-        slider.setValue(50.0);
-        slider.setWidth("200px");
-        slider.addStyleName("color3");
-        row.addComponent(slider);
-
         slider = new Slider("No indicator");
         slider.setValue(50.0);
         slider.setWidth("200px");
         slider.addStyleName("no-indicator");
-        row.addComponent(slider);
-
-        slider = new Slider("With ticks (not in IE8 & IE9)");
-        slider.setValue(3.0);
-        slider.setWidth("200px");
-        slider.setMax(4);
-        slider.addStyleName("ticks");
         row.addComponent(slider);
 
         slider = new Slider("Toggle imitation");
@@ -95,39 +70,10 @@ public class Sliders extends VerticalLayout implements View {
         slider.setHeight("200px");
         row.addComponent(slider);
 
-        slider = new Slider("Custom handle");
-        slider.setValue(50.0);
-        slider.setHeight("200px");
-        slider.addStyleName("color1");
-        slider.setOrientation(SliderOrientation.VERTICAL);
-        row.addComponent(slider);
-
-        slider = new Slider("Custom track");
-        slider.setValue(50.0);
-        slider.setHeight("200px");
-        slider.addStyleName("color2");
-        slider.setOrientation(SliderOrientation.VERTICAL);
-        row.addComponent(slider);
-
-        slider = new Slider("Custom indicator");
-        slider.setValue(50.0);
-        slider.setHeight("200px");
-        slider.addStyleName("color3");
-        slider.setOrientation(SliderOrientation.VERTICAL);
-        row.addComponent(slider);
-
         slider = new Slider("No indicator");
         slider.setValue(50.0);
         slider.setHeight("200px");
         slider.addStyleName("no-indicator");
-        slider.setOrientation(SliderOrientation.VERTICAL);
-        row.addComponent(slider);
-
-        slider = new Slider("With ticks");
-        slider.setValue(3.0);
-        slider.setHeight("200px");
-        slider.setMax(4);
-        slider.addStyleName("ticks");
         slider.setOrientation(SliderOrientation.VERTICAL);
         row.addComponent(slider);
 

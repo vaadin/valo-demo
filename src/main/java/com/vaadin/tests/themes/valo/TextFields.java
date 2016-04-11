@@ -49,21 +49,6 @@ public class TextFields extends VerticalLayout implements View {
         tf.setIcon(testIcon.get());
         row.addComponent(tf);
 
-        tf = new TextField("Custom color");
-        tf.setInputPrompt("Email");
-        tf.addStyleName("color1");
-        row.addComponent(tf);
-
-        tf = new TextField("User Color");
-        tf.setInputPrompt("Gender");
-        tf.addStyleName("color2");
-        row.addComponent(tf);
-
-        tf = new TextField("Themed");
-        tf.setInputPrompt("Age");
-        tf.addStyleName("color3");
-        row.addComponent(tf);
-
         tf = new TextField("Error");
         tf.setValue("Something’s wrong");
         tf.setComponentError(new UserError("Fix it, now!"));
@@ -209,22 +194,6 @@ public class TextFields extends VerticalLayout implements View {
         ta.setInputPrompt("Inline icon not really working");
         ta.addStyleName("inline-icon");
         ta.setIcon(testIcon.get());
-        row.addComponent(ta);
-
-        ta = new TextArea("Custom color");
-        ta.addStyleName("color1");
-        ta.setInputPrompt("Write your comment…");
-        row.addComponent(ta);
-
-        ta = new TextArea("Custom color, read-only");
-        ta.addStyleName("color2");
-        ta.setValue("Field value, spanning multiple lines of text");
-        ta.setReadOnly(true);
-        row.addComponent(ta);
-
-        ta = new TextArea("Custom color");
-        ta.addStyleName("color3");
-        ta.setValue("Field value, spanning multiple lines of text");
         row.addComponent(ta);
 
         ta = new TextArea("Small");

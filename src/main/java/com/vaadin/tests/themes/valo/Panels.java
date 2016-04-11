@@ -54,24 +54,6 @@ public class Panels extends VerticalLayout implements View {
         panel.setContent(panelContent());
         row.addComponent(panel);
 
-        panel = new Panel("Custom Caption");
-        panel.setIcon(testIcon.get());
-        panel.addStyleName("color1");
-        panel.setContent(panelContent());
-        row.addComponent(panel);
-
-        panel = new Panel("Custom Caption");
-        panel.setIcon(testIcon.get());
-        panel.addStyleName("color2");
-        panel.setContent(panelContent());
-        row.addComponent(panel);
-
-        panel = new Panel("Custom Caption");
-        panel.setIcon(testIcon.get());
-        panel.addStyleName("color3");
-        panel.setContent(panelContent());
-        row.addComponent(panel);
-
         panel = new Panel("Borderless style");
         panel.setIcon(testIcon.get());
         panel.addStyleName("borderless");

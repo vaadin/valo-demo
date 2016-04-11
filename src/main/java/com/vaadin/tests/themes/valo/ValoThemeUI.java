@@ -83,6 +83,7 @@ public class ValoThemeUI extends UI {
 
     private static LinkedHashMap<String, String> themeVariants = new LinkedHashMap<String, String>();
     static {
+        themeVariants.put("midsummer-night", "Midsummer Night");
         themeVariants.put("tests-valo", "Default");
         themeVariants.put("tests-valo-blueprint", "Blueprint");
         themeVariants.put("tests-valo-dark", "Dark");
