@@ -286,7 +286,7 @@ public class CalendarTest extends GridLayout implements View {
         hl.addComponent(captionLabel);
 
         CssLayout group = new CssLayout();
-        group.addStyleName("v-component-group");
+        group.addStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
         group.addComponent(dayButton);
         group.addComponent(weekButton);
         group.addComponent(monthButton);
@@ -397,7 +397,7 @@ public class CalendarTest extends GridLayout implements View {
 
     private void initHideWeekEndButton() {
         hideWeekendsButton = new CheckBox("Hide weekends");
-        hideWeekendsButton.addStyleName("small");
+        hideWeekendsButton.addStyleName(ValoTheme.CHECKBOX_SMALL);
         hideWeekendsButton.setImmediate(true);
         hideWeekendsButton
                 .addValueChangeListener(new Property.ValueChangeListener() {
@@ -426,7 +426,7 @@ public class CalendarTest extends GridLayout implements View {
 
     private void initReadOnlyButton() {
         readOnlyButton = new CheckBox("Read-only mode");
-        readOnlyButton.addStyleName("small");
+        readOnlyButton.addStyleName(ValoTheme.CHECKBOX_SMALL);
         readOnlyButton.setImmediate(true);
         readOnlyButton
                 .addValueChangeListener(new Property.ValueChangeListener() {
@@ -442,7 +442,7 @@ public class CalendarTest extends GridLayout implements View {
 
     private void initDisabledButton() {
         disabledButton = new CheckBox("Disabled");
-        disabledButton.addStyleName("small");
+        disabledButton.addStyleName(ValoTheme.CHECKBOX_SMALL);
         disabledButton.setImmediate(true);
         disabledButton
                 .addValueChangeListener(new Property.ValueChangeListener() {
@@ -459,7 +459,7 @@ public class CalendarTest extends GridLayout implements View {
     public void initAddNewEventButton() {
         addNewEvent = new Button("Add new event");
         addNewEvent.addStyleName("primary");
-        addNewEvent.addStyleName("small");
+        addNewEvent.addStyleName(ValoTheme.BUTTON_SMALL);
         addNewEvent.addClickListener(new Button.ClickListener() {
 
             private static final long serialVersionUID = -8307244759142541067L;
@@ -936,7 +936,7 @@ public class CalendarTest extends GridLayout implements View {
         scheduleEventPopup.setModal(true);
         scheduleEventPopup.center();
 
-        scheduleEventFieldLayout.addStyleName("light");
+        scheduleEventFieldLayout.addStyleName(ValoTheme.FORMLAYOUT_LIGHT);
         scheduleEventFieldLayout.setMargin(false);
         layout.addComponent(scheduleEventFieldLayout);
 
@@ -953,7 +953,7 @@ public class CalendarTest extends GridLayout implements View {
                 }
             }
         });
-        applyEventButton.addStyleName("primary");
+        applyEventButton.addStyleName(ValoTheme.BUTTON_PRIMARY);
         Button cancel = new Button("Cancel", new ClickListener() {
 
             private static final long serialVersionUID = 1L;
@@ -972,7 +972,7 @@ public class CalendarTest extends GridLayout implements View {
                 deleteCalendarEvent();
             }
         });
-        deleteEventButton.addStyleName("borderless");
+        deleteEventButton.addStyleName(ValoTheme.BUTTON_BORDERLESS);
         scheduleEventPopup.addCloseListener(new Window.CloseListener() {
 
             private static final long serialVersionUID = 1L;
@@ -984,7 +984,7 @@ public class CalendarTest extends GridLayout implements View {
         });
 
         HorizontalLayout buttons = new HorizontalLayout();
-        buttons.addStyleName("v-window-bottom-toolbar");
+        buttons.addStyleName(ValoTheme.WINDOW_BOTTOM_TOOLBAR);
         buttons.setWidth("100%");
         buttons.setSpacing(true);
         buttons.addComponent(deleteEventButton);

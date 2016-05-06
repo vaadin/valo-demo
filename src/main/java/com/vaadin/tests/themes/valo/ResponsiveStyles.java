@@ -15,20 +15,16 @@
  */
 package com.vaadin.tests.themes.valo;
 
-import com.vaadin.shared.util.SharedUtil;
+import com.vaadin.annotations.Theme;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.ui.UI;
 
-public class StringGenerator {
-    static String[] strings = new String[] { "lorem", "ipsum", "dolor", "sit",
-            "amet", "consectetur", "quid", "securi", "etiam", "tamquam", "eu",
-            "fugiat", "nulla", "pariatur" };
-    int stringCount = -1;
+@Theme("valo")
+public class ResponsiveStyles extends UI {
 
-    String nextString(boolean capitalize) {
-        if (++stringCount >= strings.length) {
-            stringCount = 0;
-        }
-        return capitalize ? SharedUtil.capitalize(strings[stringCount])
-                : strings[stringCount];
+    @Override
+    protected void init(VaadinRequest request) {
+        setContent(new ResponsiveStylesDesign());
     }
 
 }

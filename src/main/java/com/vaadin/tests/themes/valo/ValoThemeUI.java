@@ -15,18 +15,8 @@
  */
 package com.vaadin.tests.themes.valo;
 
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map.Entry;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-
-import com.vaadin.annotations.PreserveOnRefresh;
-import com.vaadin.annotations.StyleSheet;
-import com.vaadin.annotations.Theme;
-import com.vaadin.annotations.Title;
-import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.annotations.*;
+import com.vaadin.data.Container;
 import com.vaadin.data.Container.Hierarchical;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -37,30 +27,19 @@ import com.vaadin.event.Action;
 import com.vaadin.event.Action.Handler;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.ClassResource;
-import com.vaadin.server.FontAwesome;
-import com.vaadin.server.Page;
-import com.vaadin.server.Resource;
-import com.vaadin.server.Responsive;
-import com.vaadin.server.ThemeResource;
-import com.vaadin.server.VaadinRequest;
-import com.vaadin.server.VaadinServlet;
+import com.vaadin.server.*;
 import com.vaadin.shared.ui.label.ContentMode;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
+import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Component;
-import com.vaadin.ui.ComponentContainer;
-import com.vaadin.ui.CssLayout;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.ui.NativeSelect;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.themes.ValoTheme;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 
 @Theme("valo")
 @Title("Valo Theme Test")
@@ -95,7 +74,7 @@ public class ValoThemeUI extends UI {
         themeVariants.put("tests-valo-metro", "Metro");
         themeVariants.put("tests-valo-reindeer", "Migrate Reindeer");
     }
-    private final TestIcon testIcon = new TestIcon(100);
+    private TestIcon testIcon = new TestIcon(100);
 
     ValoMenuLayout root = new ValoMenuLayout();
     ComponentContainer viewDisplay = root.getContentContainer();
@@ -105,10 +84,10 @@ public class ValoThemeUI extends UI {
         menu.setId("testMenu");
     }
     private Navigator navigator;
-    private final LinkedHashMap<String, String> menuItems = new LinkedHashMap<String, String>();
+    private LinkedHashMap<String, String> menuItems = new LinkedHashMap<String, String>();
 
     @Override
-    protected void init(final VaadinRequest request) {
+    protected void init(VaadinRequest request) {
         if (request.getParameter("test") != null) {
             testMode = true;
 
@@ -122,12 +101,6 @@ public class ValoThemeUI extends UI {
                 && getPage().getWebBrowser().getBrowserMajorVersion() == 9) {
             menu.setWidth("320px");
         }
-        // Show .v-app-loading valo-menu-badge
-        // try {
-        // Thread.sleep(2000);
-        // } catch (InterruptedException e) {
-        // e.printStackTrace();
-        // }
 
         if (!testMode) {
             Responsive.makeResponsive(this);
@@ -164,7 +137,7 @@ public class ValoThemeUI extends UI {
         navigator.addView("popupviews", PopupViews.class);
         navigator.addView("dragging", Dragging.class);
 
-        final String f = Page.getCurrent().getUriFragment();
+        String f = Page.getCurrent().getUriFragment();
         if (f == null || f.equals("")) {
             navigator.navigateTo("common");
         }
@@ -174,21 +147,21 @@ public class ValoThemeUI extends UI {
         navigator.addViewChangeListener(new ViewChangeListener() {
 
             @Override
-            public boolean beforeViewChange(final ViewChangeEvent event) {
+            public boolean beforeViewChange(ViewChangeEvent event) {
                 return true;
             }
 
             @Override
-            public void afterViewChange(final ViewChangeEvent event) {
-                for (final Iterator<Component> it = menuItemsLayout.iterator(); it
+            public void afterViewChange(ViewChangeEvent event) {
+                for (Iterator<Component> it = menuItemsLayout.iterator(); it
                         .hasNext();) {
                     it.next().removeStyleName("selected");
                 }
-                for (final Entry<String, String> item : menuItems.entrySet()) {
+                for (Entry<String, String> item : menuItems.entrySet()) {
                     if (event.getViewName().equals(item.getKey())) {
-                        for (final Iterator<Component> it = menuItemsLayout
+                        for (Iterator<Component> it = menuItemsLayout
                                 .iterator(); it.hasNext();) {
-                            final Component c = it.next();
+                            Component c = it.next();
                             if (c.getCaption() != null
                                     && c.getCaption().startsWith(
                                             item.getValue())) {
@@ -223,30 +196,30 @@ public class ValoThemeUI extends UI {
     }
 
     Component buildTestMenu() {
-        final CssLayout menu = new CssLayout();
-        menu.addStyleName("large-icons");
+        CssLayout menu = new CssLayout();
+        menu.addStyleName(ValoTheme.MENU_PART_LARGE_ICONS);
 
-        final Label logo = new Label("Va");
+        Label logo = new Label("Va");
         logo.setSizeUndefined();
-        logo.setPrimaryStyleName("valo-menu-logo");
+        logo.setPrimaryStyleName(ValoTheme.MENU_LOGO);
         menu.addComponent(logo);
 
         Button b = new Button(
                 "Reference <span class=\"valo-menu-badge\">3</span>");
         b.setIcon(FontAwesome.TH_LIST);
-        b.setPrimaryStyleName("valo-menu-item");
+        b.setPrimaryStyleName(ValoTheme.MENU_ITEM);
         b.addStyleName("selected");
         b.setHtmlContentAllowed(true);
         menu.addComponent(b);
 
         b = new Button("API");
         b.setIcon(FontAwesome.BOOK);
-        b.setPrimaryStyleName("valo-menu-item");
+        b.setPrimaryStyleName(ValoTheme.MENU_ITEM);
         menu.addComponent(b);
 
         b = new Button("Examples <span class=\"valo-menu-badge\">12</span>");
         b.setIcon(FontAwesome.TABLE);
-        b.setPrimaryStyleName("valo-menu-item");
+        b.setPrimaryStyleName(ValoTheme.MENU_ITEM);
         b.setHtmlContentAllowed(true);
         menu.addComponent(b);
 
@@ -279,16 +252,16 @@ public class ValoThemeUI extends UI {
         }
         menuItems.put("forms", "Forms");
 
-        final HorizontalLayout top = new HorizontalLayout();
+        HorizontalLayout top = new HorizontalLayout();
         top.setWidth("100%");
         top.setDefaultComponentAlignment(Alignment.MIDDLE_LEFT);
-        top.addStyleName("valo-menu-title");
+        top.addStyleName(ValoTheme.MENU_TITLE);
         menu.addComponent(top);
         menu.addComponent(createThemeSelect());
 
-        final Button showMenu = new Button("Menu", new ClickListener() {
+        Button showMenu = new Button("Menu", new ClickListener() {
             @Override
-            public void buttonClick(final ClickEvent event) {
+            public void buttonClick(ClickEvent event) {
                 if (menu.getStyleName().contains("valo-menu-visible")) {
                     menu.removeStyleName("valo-menu-visible");
                 } else {
@@ -302,16 +275,16 @@ public class ValoThemeUI extends UI {
         showMenu.setIcon(FontAwesome.LIST);
         menu.addComponent(showMenu);
 
-        final Label title = new Label(
-                "<h3>Vaadin <strong>Valo Theme</strong></h3>", ContentMode.HTML);
+        Label title = new Label("<h3>Vaadin <strong>Valo Theme</strong></h3>",
+                ContentMode.HTML);
         title.setSizeUndefined();
         top.addComponent(title);
         top.setExpandRatio(title, 1);
 
-        final MenuBar settings = new MenuBar();
+        MenuBar settings = new MenuBar();
         settings.addStyleName("user-menu");
-        final StringGenerator sg = new StringGenerator();
-        final MenuItem settingsItem = settings.addItem(sg.nextString(true)
+        StringGenerator sg = new StringGenerator();
+        MenuItem settingsItem = settings.addItem(sg.nextString(true)
                 + " " + sg.nextString(true) + sg.nextString(false),
                 new ClassResource("profile-pic-300px.jpg"),
                 null);
@@ -329,8 +302,8 @@ public class ValoThemeUI extends UI {
         for (final Entry<String, String> item : menuItems.entrySet()) {
             if (item.getKey().equals("labels")) {
                 label = new Label("Components", ContentMode.HTML);
-                label.setPrimaryStyleName("valo-menu-subtitle");
-                label.addStyleName("h4");
+                label.setPrimaryStyleName(ValoTheme.MENU_SUBTITLE);
+                label.addStyleName(ValoTheme.LABEL_H4);
                 label.setSizeUndefined();
                 menuItemsLayout.addComponent(label);
             }
@@ -340,8 +313,8 @@ public class ValoThemeUI extends UI {
                         + "</span>");
                 count = 0;
                 label = new Label("Containers", ContentMode.HTML);
-                label.setPrimaryStyleName("valo-menu-subtitle");
-                label.addStyleName("h4");
+                label.setPrimaryStyleName(ValoTheme.MENU_SUBTITLE);
+                label.addStyleName(ValoTheme.LABEL_H4);
                 label.setSizeUndefined();
                 menuItemsLayout.addComponent(label);
             }
@@ -351,14 +324,14 @@ public class ValoThemeUI extends UI {
                         + "</span>");
                 count = 0;
                 label = new Label("Other", ContentMode.HTML);
-                label.setPrimaryStyleName("valo-menu-subtitle");
-                label.addStyleName("h4");
+                label.setPrimaryStyleName(ValoTheme.MENU_SUBTITLE);
+                label.addStyleName(ValoTheme.LABEL_H4);
                 label.setSizeUndefined();
                 menuItemsLayout.addComponent(label);
             }
-            final Button b = new Button(item.getValue(), new ClickListener() {
+            Button b = new Button(item.getValue(), new ClickListener() {
                 @Override
-                public void buttonClick(final ClickEvent event) {
+                public void buttonClick(ClickEvent event) {
                     navigator.navigateTo(item.getKey());
                 }
             });
@@ -367,7 +340,7 @@ public class ValoThemeUI extends UI {
                         + " <span class=\"valo-menu-badge\">123</span>");
             }
             b.setHtmlContentAllowed(true);
-            b.setPrimaryStyleName("valo-menu-item");
+            b.setPrimaryStyleName(ValoTheme.MENU_ITEM);
             b.setIcon(testIcon.get());
             menuItemsLayout.addComponent(b);
             count++;
@@ -384,7 +357,7 @@ public class ValoThemeUI extends UI {
         ns.setId("themeSelect");
         ns.addContainerProperty("caption", String.class, "");
         ns.setItemCaptionPropertyId("caption");
-        for (final String identifier : themeVariants.keySet()) {
+        for (String identifier : themeVariants.keySet()) {
             ns.addItem(identifier).getItemProperty("caption")
                     .setValue(themeVariants.get(identifier));
         }
@@ -392,7 +365,7 @@ public class ValoThemeUI extends UI {
         ns.setValue(ValoTheme.THEME_NAME);
         ns.addValueChangeListener(new ValueChangeListener() {
             @Override
-            public void valueChange(final ValueChangeEvent event) {
+            public void valueChange(ValueChangeEvent event) {
                 setTheme((String) ns.getValue());
             }
         });
@@ -407,13 +380,12 @@ public class ValoThemeUI extends UI {
                 ACTION_THREE };
 
         @Override
-        public void handleAction(final Action action, final Object sender,
-                final Object target) {
+        public void handleAction(Action action, Object sender, Object target) {
             Notification.show(action.getCaption());
         }
 
         @Override
-        public Action[] getActions(final Object target, final Object sender) {
+        public Action[] getActions(Object target, Object sender) {
             return ACTIONS;
         }
     };
@@ -429,18 +401,18 @@ public class ValoThemeUI extends UI {
 
     @SuppressWarnings("unchecked")
     static IndexedContainer generateContainer(final int size,
-            final boolean hierarchical) {
-        final TestIcon testIcon = new TestIcon(90);
-        final IndexedContainer container = hierarchical ? new HierarchicalContainer()
+                                       final boolean hierarchical) {
+        TestIcon testIcon = new TestIcon(90);
+        IndexedContainer container = hierarchical ? new HierarchicalContainer()
                 : new IndexedContainer();
-        final StringGenerator sg = new StringGenerator();
+        StringGenerator sg = new StringGenerator();
         container.addContainerProperty(CAPTION_PROPERTY, String.class, null);
         container.addContainerProperty(ICON_PROPERTY, Resource.class, null);
         container.addContainerProperty(INDEX_PROPERTY, Integer.class, null);
         container
                 .addContainerProperty(DESCRIPTION_PROPERTY, String.class, null);
         for (int i = 1; i < size + 1; i++) {
-            final Item item = container.addItem(i);
+            Item item = container.addItem(i);
             item.getItemProperty(CAPTION_PROPERTY).setValue(
                     sg.nextString(true) + " " + sg.nextString(false));
             item.getItemProperty(INDEX_PROPERTY).setValue(i);
@@ -455,37 +427,32 @@ public class ValoThemeUI extends UI {
         if (hierarchical) {
             for (int i = 1; i < size + 1; i++) {
                 for (int j = 1; j < 5; j++) {
-                    final String id = i + " -> " + j;
+                    String id = i + " -> " + j;
                     Item child = container.addItem(id);
                     child.getItemProperty(CAPTION_PROPERTY).setValue(
                             sg.nextString(true) + " " + sg.nextString(false));
                     child.getItemProperty(ICON_PROPERTY).setValue(
                             testIcon.get());
-                    // ((Hierarchical) container).setChildrenAllowed(id, false);
                     ((Hierarchical) container).setParent(id, i);
 
                     for (int k = 1; k < 6; k++) {
-                        final String id2 = id + " -> " + k;
+                        String id2 = id + " -> " + k;
                         child = container.addItem(id2);
                         child.getItemProperty(CAPTION_PROPERTY).setValue(
                                 sg.nextString(true) + " "
                                         + sg.nextString(false));
                         child.getItemProperty(ICON_PROPERTY).setValue(
                                 testIcon.get());
-                        // ((Hierarchical) container)
-                        // .setChildrenAllowed(id, false);
                         ((Hierarchical) container).setParent(id2, id);
 
                         for (int l = 1; l < 5; l++) {
-                            final String id3 = id2 + " -> " + l;
+                            String id3 = id2 + " -> " + l;
                             child = container.addItem(id3);
                             child.getItemProperty(CAPTION_PROPERTY).setValue(
                                     sg.nextString(true) + " "
                                             + sg.nextString(false));
                             child.getItemProperty(ICON_PROPERTY).setValue(
                                     testIcon.get());
-                            // ((Hierarchical) container)
-                            // .setChildrenAllowed(id, false);
                             ((Hierarchical) container).setParent(id3, id2);
                         }
                     }
